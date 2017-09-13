@@ -11,7 +11,7 @@ import MapKit
 import FirebaseDatabase
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
-
+    
     @IBOutlet weak var mapView: MKMapView!
     
     let locationManager = CLLocationManager()
@@ -20,21 +20,18 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var geoFireRef: DatabaseReference!
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         mapView.delegate = self
-        
         mapView.userTrackingMode = MKUserTrackingMode.follow
         
         geoFireRef = Database.database().reference()
         geoFire = GeoFire(firebaseRef: geoFireRef)
         
-        
     }
   
     override func viewDidAppear(_ animated: Bool) {
-    locationAuthStatus()
+        locationAuthStatus()
     }
     
     func locationAuthStatus() {
@@ -46,20 +43,20 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == CLAuthorizationStatus.authorizedWhenInUse {
-            mapView.showsUserLocation = true
         
+        if status == .authorizedWhenInUse {
+            mapView.showsUserLocation = true
         }
     }
     
     func centerMapOnLocation(location: CLLocation) {
-      let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 2000, 2000)
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 2000, 2000)
         
         mapView.setRegion(coordinateRegion, animated: true)
     }
     
-    
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        
         if let loc = userLocation.location {
             if !mapHasCenteredOnce {
                 centerMapOnLocation(location: loc)
@@ -82,19 +79,33 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
     }
     
-    func createSighting(forLocation location: CLLocation, withPokemon pokeid:Int) {
-     
-        geoFire.setLocation(location, forKey: "\(pokeid)")
+    func createSighting(forLocation location: CLLocation, withPokemon pokeId: Int) {
         
+        geoFire.setLocation(location, forKey: "\(pokeId)")
     }
     
     func showSightingsOnMap(location: CLLocation) {
+        let circleQuery = geoFire!.query(at: location, withRadius: 2.5)
         
-        
-        
-        }
-
-    @IBAction func spotRandomPokemon(_ sender: Any) {
+        _ = circleQuery?.observe(GFEventType.keyEntered, with: { (key, location) in
+            
+            if let key = key, let location = location {
+                let anno = PokeAnnotation(coordinate: location.coordinate, pokemonNumber: Int(key)!)
+                self.mapView.addAnnotation(anno)
+            }
+        })
     }
-}
+    
+    
+    
+    
 
+        @IBAction func spotRandomPokemon(_ sender: AnyObject) {
+            
+            let loc = CLLocation(latitude: mapView.centerCoordinate.latitude, longitude: mapView.centerCoordinate.longitude)
+            
+            let rand = arc4random_uniform(151) + 1
+            createSighting(forLocation: loc, withPokemon: Int(rand))
+        }
+        
+}
