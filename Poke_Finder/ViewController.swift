@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import FirebaseDatabase
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
@@ -15,6 +16,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     let locationManager = CLLocationManager()
     var mapHasCenteredOnce = false
+    var geoFire: GeoFire!
+    var geoFireRef: DatabaseReference!
     
     override func viewDidLoad() {
         
@@ -23,6 +26,11 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mapView.delegate = self
         
         mapView.userTrackingMode = MKUserTrackingMode.follow
+        
+        geoFireRef = Database.database().reference()
+        geoFire = GeoFire(firebaseRef: geoFireRef)
+        
+        
     }
   
     override func viewDidAppear(_ animated: Bool) {
@@ -74,10 +82,19 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
     }
     
-
+    func createSighting(forLocation location: CLLocation, withPokemon pokeid:Int) {
+     
+        geoFire.setLocation(location, forKey: "\(pokeid)")
+        
+    }
     
-    var geoFire: GeoFire!
+    func showSightingsOnMap(location: CLLocation) {
+        
+        
+        
+        }
 
-
+    @IBAction func spotRandomPokemon(_ sender: Any) {
+    }
 }
 

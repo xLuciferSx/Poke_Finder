@@ -22,35 +22,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="3Sg-yu-p5z">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="736"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="fE2-9e-UNq">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFe-3W-k11">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ujA-QC-PHo">
                                 <rect key="frame" x="16" y="604" width="54" height="53"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="54" id="6br-c0-ljY"/>
-                                    <constraint firstAttribute="height" constant="53" id="LZH-3q-xyu"/>
+                                    <constraint firstAttribute="width" constant="54" id="VvK-9m-4lT"/>
+                                    <constraint firstAttribute="height" constant="53" id="bYl-aV-dFY"/>
                                 </constraints>
                                 <state key="normal" image="pokeball"/>
+                                <connections>
+                                    <action selector="spotRandomPokemon:" destination="BYZ-38-t0r" eventType="touchUpInside" id="huy-dc-tG7"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="nFe-3W-k11" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="4Jh-ng-D0e"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="3Sg-yu-p5z" secondAttribute="bottom" id="O61-4T-XLl"/>
-                            <constraint firstAttribute="trailing" secondItem="3Sg-yu-p5z" secondAttribute="trailing" id="QKD-jG-wGg"/>
-                            <constraint firstItem="3Sg-yu-p5z" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="jdZ-bN-Pzp"/>
-                            <constraint firstItem="3Sg-yu-p5z" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="s22-Y5-fPV"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="nFe-3W-k11" secondAttribute="bottom" constant="10" id="ykd-8t-rbF"/>
+                            <constraint firstItem="fE2-9e-UNq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="DKR-9u-Yax"/>
+                            <constraint firstItem="fE2-9e-UNq" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="ELH-Z1-fi0"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="fE2-9e-UNq" secondAttribute="bottom" id="LhT-eU-UPK"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ujA-QC-PHo" secondAttribute="bottom" constant="10" id="alk-Qx-rsC"/>
+                            <constraint firstAttribute="trailing" secondItem="fE2-9e-UNq" secondAttribute="trailing" id="cao-Yg-2Fl"/>
+                            <constraint firstItem="ujA-QC-PHo" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="jaI-DY-unW"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="mapView" destination="3Sg-yu-p5z" id="Bsl-P8-VzY"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="117.59999999999999" y="122.78860569715144"/>
+            <point key="canvasLocation" x="116" y="121.88905547226388"/>
         </scene>
     </scenes>
     <resources>
